@@ -1,4 +1,3 @@
-//implements circular queue using array and also its algorithm.
 #include<iostream>
 using namespace std;
 class Queue{
@@ -69,19 +68,15 @@ int main(){
             cout<<"Enter value: ";
             cin>>value;
             q.enqueue(value);
-            break;
-        
+            break;        
             case 2:
             q.dequeue();
-            break;
-            
+            break;          
             case 3:
             q.traverse();
             break;
-
             case 4:
-            return 0;
-            
+            return 0;           
             default:
             cout<<" Invalid choice \n";
         }

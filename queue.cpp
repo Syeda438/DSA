@@ -2,10 +2,10 @@
 using namespace std;
 class Queue{
     private:
-    static const int size=5;
-    int array[size];
     int front;
     int rear;
+    static const int size=5;
+    int queue[size];
     public:
     Queue(){
         front=-1;
@@ -13,67 +13,54 @@ class Queue{
     }
     void enqueue(int value){
         if(rear==size-1){
-            cout<<"Queue is full... Enqueue not possible...\n";
-            return;
-        }
-        if(front==-1){
-            front=0;} 
+            cout<<"Queue Overflow\n";
+        }else{
+            if(front==-1){
+            front=0;}
             rear++;
-            array[rear]=value;
-            cout<<"Enqueue Successfull...\n";
+            queue[rear]=value;
+            cout<<queue[rear]<<" inserted\n";
+        }
     }
     void dequeue(){
-        if(front==-1 && rear==-1){
-            cout<<"Queue is Empty...Nothing to delete...\n";
-        }
-            cout<<"Deleted: "<<array[front];
-        if(front==rear){
-            front=rear=-1;
-        }
-        else front++;
-    }
-    void traverse(){
-        if(front==-1 && rear==-1){
-            cout<<"Queue is Empty...\n";
+        if(front==-1){
+            cout<<"Queue underflow\n";
         }else{
-            for(int i=front; i<=rear; i++){
-                cout<<array[i]<<" ";
+            cout<<queue[front]<<" deleted\n";
+            front++;
+            if(front>rear){
+                front=rear=-1;
             }
+        }
+    }
+    void display(){
+        if(front==-1){
+            cout<<"Queue underflow\n";
+        }else{
+            cout<<"Queue: "<<endl;
+            for(int i=front; i<=rear; i++){
+                cout<<queue[i]<<" ";
+            }
+            cout<<endl;
+            cout<<endl;
         }
     }
 };
 int main(){
     Queue q;
-    int choice, value;
-    while(true){
-        cout<<"\n   Main Menu: \n";
-        cout<<"1. Enqueue\n";
-        cout<<"2. Dequeue\n";
-        cout<<"3. Traverse\n";
-        cout<<"4. Exit\n";
-        cout<<"Enter your choice (1,2,3, or 4)\n";
-        cin>>choice;
-            switch(choice){
-            case 1:
-            cout<<"Enter value: ";
-            cin>>value;
-            q.enqueue(value);
-            break;
-        
-            case 2:
-            q.dequeue();
-            break;
-            
-            case 3:
-            q.traverse();
-            break;
-
-            case 4:
-            return 0;
-            
-            default:
-            cout<<" Invalid choice \n";
-        }
-    }
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    q.display();
+    q.dequeue();
+    q.enqueue(30);
+    q.dequeue();
+    q.enqueue(40);
+    q.display();
+    q.dequeue();
+    q.enqueue(50);
+    q.display();
     return 0;
 }
